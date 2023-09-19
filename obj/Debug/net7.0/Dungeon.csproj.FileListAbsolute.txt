@@ -1,0 +1,15 @@
+/home/ubuntu/Dungeon/bin/Debug/net7.0/Dungeon
+/home/ubuntu/Dungeon/bin/Debug/net7.0/Dungeon.deps.json
+/home/ubuntu/Dungeon/bin/Debug/net7.0/Dungeon.runtimeconfig.json
+/home/ubuntu/Dungeon/bin/Debug/net7.0/Dungeon.dll
+/home/ubuntu/Dungeon/bin/Debug/net7.0/Dungeon.pdb
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.csproj.AssemblyReference.cache
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.GeneratedMSBuildEditorConfig.editorconfig
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.AssemblyInfoInputs.cache
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.AssemblyInfo.cs
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.csproj.CoreCompileInputs.cache
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.dll
+/home/ubuntu/Dungeon/obj/Debug/net7.0/refint/Dungeon.dll
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.pdb
+/home/ubuntu/Dungeon/obj/Debug/net7.0/Dungeon.genruntimeconfig.cache
+/home/ubuntu/Dungeon/obj/Debug/net7.0/ref/Dungeon.dll
