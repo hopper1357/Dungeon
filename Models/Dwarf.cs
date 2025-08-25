@@ -11,11 +11,11 @@ namespace Dungeon.Models
         public int Dexterity { get; set; }
         public int Intelligence { get; set; }
         public int Age { get; set; }
-        public Job CurrentJob { get; set; }
+        public JobDefinition CurrentJob { get; set; }
         public List<Skill> Skills { get; set; }
         public List<Item> Inventory { get; set; }
 
-        public Dwarf(int health, int hunger, int stamina, int strength, int dexterity, int intelligence, int age, Job currentJob)
+        public Dwarf(int health, int hunger, int stamina, int strength, int dexterity, int intelligence, int age, JobDefinition currentJob)
         {
             Health = health;
             Hunger = hunger;

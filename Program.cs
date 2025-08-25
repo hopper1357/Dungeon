@@ -1,4 +1,5 @@
 ﻿using Dungeon.Models;
+using System.Linq;
 
 namespace Dungeon
 {
@@ -26,13 +27,15 @@ namespace Dungeon
         private void Initialize()
         {
             // Initialize game resources and system here
-            Dwarf dwarf1 = new Dwarf(100, 100, 100, 10, 10, 10, 25, Job.Miner);
+            var minerJob = GameData.Jobs.First(j => j.Name == "Miner");
+            Dwarf dwarf1 = new Dwarf(100, 100, 100, 10, 10, 10, 25, minerJob);
             dwarf1.Skills.Add(new Skill("Mining", 5));
             dwarf1.Skills.Add(new Skill("Fighting", 2));
             dwarf1.Inventory.Add(new Item("Pickaxe", 1));
             dwarves.Add(dwarf1);
 
-            Dwarf dwarf2 = new Dwarf(80, 80, 80, 8, 12, 10, 30, Job.Farmer);
+            var farmerJob = GameData.Jobs.First(j => j.Name == "Farmer (Field Crops)");
+            Dwarf dwarf2 = new Dwarf(80, 80, 80, 8, 12, 10, 30, farmerJob);
             dwarf2.Skills.Add(new Skill("Farming", 4));
             dwarf2.Skills.Add(new Skill("Cooking", 3));
             dwarf2.Inventory.Add(new Item("Hoe", 1));
@@ -62,7 +65,7 @@ namespace Dungeon
                 Console.WriteLine($"Dexterity: {dwarf.Dexterity}");
                 Console.WriteLine($"Intelligence: {dwarf.Intelligence}");
                 Console.WriteLine($"Age: {dwarf.Age}");
-                Console.WriteLine($"Job: {dwarf.CurrentJob}");
+                Console.WriteLine($"Job: {dwarf.CurrentJob.Name}");
                 Console.WriteLine("Skills:");
                 foreach (var skill in dwarf.Skills)
                 {
