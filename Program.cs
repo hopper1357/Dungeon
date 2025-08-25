@@ -9,6 +9,7 @@ namespace Dungeon
         private const int FramsPerSecond = 60;
         private const double UpdateInterval = 1000.0 / FramsPerSecond;
         private List<Dwarf> dwarves = new List<Dwarf>();
+        private Stockpile stockpile = new Stockpile();
 
         public void Run()
         {
@@ -28,12 +29,18 @@ namespace Dungeon
             Dwarf dwarf1 = new Dwarf(100, 100, 100, 10, 10, 10, 25, Job.Miner);
             dwarf1.Skills.Add(new Skill("Mining", 5));
             dwarf1.Skills.Add(new Skill("Fighting", 2));
+            dwarf1.Inventory.Add(new Item("Pickaxe", 1));
             dwarves.Add(dwarf1);
 
             Dwarf dwarf2 = new Dwarf(80, 80, 80, 8, 12, 10, 30, Job.Farmer);
             dwarf2.Skills.Add(new Skill("Farming", 4));
             dwarf2.Skills.Add(new Skill("Cooking", 3));
+            dwarf2.Inventory.Add(new Item("Hoe", 1));
             dwarves.Add(dwarf2);
+
+            stockpile.AddItem(new Item("Stone", 50));
+            stockpile.AddItem(new Item("Wood", 25));
+            stockpile.AddItem(new Item("Iron Ore", 10));
         }
 
         private void Update()
@@ -61,8 +68,20 @@ namespace Dungeon
                 {
                     Console.WriteLine($"- {skill.Name} (Level {skill.Level})");
                 }
+                Console.WriteLine("Inventory:");
+                foreach (var item in dwarf.Inventory)
+                {
+                    Console.WriteLine($"- {item.Name} (x{item.Quantity})");
+                }
                 Console.WriteLine();
             }
+
+            Console.WriteLine("--- Stockpile ---");
+            foreach (var item in stockpile.Items)
+            {
+                Console.WriteLine($"- {item.Name} (x{item.Quantity})");
+            }
+            Console.WriteLine();
         }
 
         private void Cleanup()
