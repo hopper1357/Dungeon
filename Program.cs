@@ -50,6 +50,12 @@ namespace Dungeon
 
             var worldGenerator = new WorldGenerator();
             world = worldGenerator.Generate(50, 20, 10);
+            if (world != null)
+            {
+                var miningZoneArea = new Rect(10, 5, 10, 5);
+                var miningZone = new Zone(ZoneType.Mining, miningZoneArea, world.Depth / 2);
+                world.Zones.Add(miningZone);
+            }
         }
 
         private void Update()
@@ -100,7 +106,15 @@ namespace Dungeon
                 {
                     for (int x = 0; x < world.Width; x++)
                     {
-                        Console.Write(GetTileChar(world.Tiles[x, y, surfaceLevel].Type));
+                        var zone = world.Zones.FirstOrDefault(z => z.Z == surfaceLevel && z.Area.Contains(x, y));
+                        if (zone != null)
+                        {
+                            Console.Write(GetZoneChar(zone.Type));
+                        }
+                        else
+                        {
+                            Console.Write(GetTileChar(world.Tiles[x, y, surfaceLevel].Type));
+                        }
                     }
                     Console.WriteLine();
                 }
@@ -121,6 +135,19 @@ namespace Dungeon
                     return '~';
                 case TileType.Air:
                     return ' ';
+                default:
+                    return '?';
+            }
+        }
+
+        private char GetZoneChar(ZoneType type)
+        {
+            switch (type)
+            {
+                case ZoneType.Mining:
+                    return 'm';
+                case ZoneType.Stockpile:
+                    return 's';
                 default:
                     return '?';
             }
