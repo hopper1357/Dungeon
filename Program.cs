@@ -1,4 +1,6 @@
 ﻿using Dungeon.Models;
+using Dungeon.Models.World;
+using Dungeon.Generators;
 using System.Linq;
 
 namespace Dungeon
@@ -11,6 +13,7 @@ namespace Dungeon
         private const double UpdateInterval = 1000.0 / FramsPerSecond;
         private List<Dwarf> dwarves = new List<Dwarf>();
         private Stockpile stockpile = new Stockpile();
+        private World? world;
 
         public void Run()
         {
@@ -44,6 +47,9 @@ namespace Dungeon
             stockpile.AddItem(new Item("Stone", 50));
             stockpile.AddItem(new Item("Wood", 25));
             stockpile.AddItem(new Item("Iron Ore", 10));
+
+            var worldGenerator = new WorldGenerator();
+            world = worldGenerator.Generate(50, 20, 10);
         }
 
         private void Update()
@@ -85,6 +91,39 @@ namespace Dungeon
                 Console.WriteLine($"- {item.Name} (x{item.Quantity})");
             }
             Console.WriteLine();
+
+            Console.WriteLine("--- World ---");
+            if (world != null)
+            {
+                int surfaceLevel = world.Depth / 2;
+                for (int y = 0; y < world.Height; y++)
+                {
+                    for (int x = 0; x < world.Width; x++)
+                    {
+                        Console.Write(GetTileChar(world.Tiles[x, y, surfaceLevel].Type));
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        private char GetTileChar(TileType type)
+        {
+            switch (type)
+            {
+                case TileType.Grass:
+                    return '.';
+                case TileType.Dirt:
+                    return '#';
+                case TileType.Stone:
+                    return 'X';
+                case TileType.Water:
+                    return '~';
+                case TileType.Air:
+                    return ' ';
+                default:
+                    return '?';
+            }
         }
 
         private void Cleanup()
