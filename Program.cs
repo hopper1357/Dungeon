@@ -55,6 +55,10 @@ namespace Dungeon
                 var miningZoneArea = new Rect(10, 5, 10, 5);
                 var miningZone = new Zone(ZoneType.Mining, miningZoneArea, world.Depth / 2);
                 world.Zones.Add(miningZone);
+
+                var carpentryWorkshop = GameData.Workshops.First(w => w.Name == "Carpentry Workshop");
+                var building = new Building(carpentryWorkshop, 25, 10, world.Depth / 2);
+                world.Buildings.Add(building);
             }
         }
 
@@ -106,8 +110,14 @@ namespace Dungeon
                 {
                     for (int x = 0; x < world.Width; x++)
                     {
+                        var building = world.Buildings.FirstOrDefault(b => b.X == x && b.Y == y && b.Z == surfaceLevel);
                         var zone = world.Zones.FirstOrDefault(z => z.Z == surfaceLevel && z.Area.Contains(x, y));
-                        if (zone != null)
+
+                        if (building != null)
+                        {
+                            Console.Write('W');
+                        }
+                        else if (zone != null)
                         {
                             Console.Write(GetZoneChar(zone.Type));
                         }
